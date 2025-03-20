@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DKS Pick</title>
+
+  <script src="https://kit.fontawesome.com/e7294f412a.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /*header*/
+    header {
+      min-width: 1200px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header .inner {
+      width: 1180px;
+      height: 80px;
+      margin: auto;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    /*로고*/
+    header .inner img {
+      position: absolute;
+      left: 0;
+      bottom: 15px;
+    }
+
+    header .inner h1 a {
+      font: bold 24px/1 Arial;
+      color: #444;
+    }
+
+    /*gnb*/
+    header .inner #gnb {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+    }
+
+    header .inner #gnb a {
+      display: block;
+      padding: 20px 30px;
+      font: bold 15px/1 Arial;
+      color: #555;
+      transition: all .5s;
+    }
+
+    /*hover*/
+    header .inner #gnb a:hover {
+      background-color: #555;
+      color: #fff;
+    }
+
+    /*main*/
+    .slideContaniner {
+      width: 1200px;
+      height: 1000px;
+      margin: 0px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slides {
+      position: relative;
+      animation: 1.5s;
+      text-align: center;
+    }
+
+    .numberText {
+      display: inline-block;
+      color: #666;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+      left: 100px;
+    }
+
+    .slides img {
+      width: 1000px;
+      height: 1000px;
+    }
+
+    .text {
+      color: #666;
+      font-size: 16px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #3498db;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .dotContainer {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background-color: #bbb;
+      cursor: pointer;
+      transition: 0.6s;
+    }
+
+    .dot:hover,
+    .active {
+      background-color: #777;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+
+    /*footer*/
+    footer {
+      border-top: 1px #ddd;
+      min-width: 1200px;
+      height: 280px;
+      background-color: #141414;
+    }
+
+    footer .wrap {
+      margin: auto;
+      width: 1180px;
+      padding: 80px 60px;
+      line-height: 25px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      color: #bcbcbc;
+    }
+
+    footer .author li:first-child {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    footer .links {
+      display: flex;
+      gap: 70px;
+    }
+
+    footer .links a {
+      color: #bcbcbc;
+    }
+
+    footer .links i {
+      padding-right: 20px;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="inner">
+      <div class="logo">
+        <a href="index.html"><img src="images/로고.png" width="50px" height="50px"></a>
+      </div>
+      <ul id="gnb">
+        <li><a href="notice.html">NOTICE</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="picture.html">PICTURE</a></li>
+        <li><a href="video.html">VIDEO</a></li>
+        <li><a href="pick.html">DKS PICK</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="slideContaniner">
+      <div class="slides" style="display: block;">
+        <div class="numberText">1 / 4</div>
+        <img src="images/zzi1.jpg" alt="이미지1">
+        <div class="text">새해 복 많이 받으세요</div>
+      </div>
+
+      <div class="slides">
+        <div class="numberText">2 / 4</div>
+        <img src="images/zzi2.jpg" alt="이미지2">
+        <div class="text">정월대보름</div>
+      </div>
+
+      <div class="slides">
+        <div class="numberText">3 / 4</div>
+        <img src="images/zzi3.jpg" alt="이미지3">
+        <div class="text">발렌타인데이</div>
+      </div>
+
+      <div class="slides">
+        <div class="numberText">4 / 4</div>
+        <img src="images/zzi4.jpg" alt="이미지4">
+        <div class="text">말할 수 없는 비밀 개봉</div>
+      </div>
+
+      <!-- 이전 과 다음 버튼-->
+      <a class="prev"><i class="fa-solid fa-backward-fast fa-3x"></i></a>
+      <a class="next"><i class="fa-solid fa-forward-fast fa-3x"></i></a>
+
+    </div>
+
+    <div class="dotContainer">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </main>
+
+
+  <footer>
+    <div class="wrap">
+      <ul class="author">
+        <li>Doh Kyung Soo Fan Maro</li>
+        <li>&copy; 2025 All rights reserved.<br>
+          Design by Maro</li>
+      </ul>
+      <ul class="address">
+        <li>pugoni@hanmail.net</li>
+        <li>+82 010 5252 0742</li>
+      </ul>
+      <div class="links">
+        <ul>
+          <li><a href="https://x.com/kssooni"><i class="fab fa-twitter-square"></i>X</a></li>
+          <li><a href="https://www.instagram.com/ksoosuni/"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+          <li><a href="https://www.youtube.com/@kssooni"><i class="fa-brands fa-youtube"></i>Youtube</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    $(document).ready(function () {
+      let slideIndex = 0;
+
+      $(".dot").click(function () {
+        slideIndex = $(this).index();
+        showSlide();
+      });
+
+      $(".next").click(function () {
+        slideIndex++;
+        setSlideIndex();
+      });
+
+      $(".prev").click(function () {
+        slideIndex--;
+        setSlideIndex();
+
+      });
+
+      function setSlideIndex() {
+        let maxIndex = $(".slides").length - 1;
+
+        if (slideIndex < 0) slideIndex = maxIndex;
+        if (slideIndex > maxIndex) slideIndex = 0;
+
+        showSlide();
+      }
+
+      function showSlide() {
+
+
+        $(".slides").hide();
+        $(".dot").removeClass("active");
+
+        $(".slides").eq(slideIndex).show();
+        $(".dot").eq(slideIndex).addClass("active");
+
+
+      }
+
+      setInterval(function () {
+        slideIndex++;
+        setSlideIndex()
+      }, 5000);
+    });
+  </script>
+
+</body>
+
+</html>

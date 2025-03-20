@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule</title>
+
+  <script src="https://kit.fontawesome.com/e7294f412a.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /*header*/
+    header {
+      min-width: 1200px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header .inner {
+      width: 1180px;
+      height: 80px;
+      margin: auto;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    /*로고*/
+    header .inner img {
+      position: absolute;
+      left: 0;
+      bottom: 15px;
+    }
+
+    header .inner h1 a {
+      font: bold 24px/1 Arial;
+      color: #444;
+    }
+
+    /*gnb*/
+    header .inner #gnb {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+    }
+
+    header .inner #gnb a {
+      display: block;
+      padding: 20px 30px;
+      font: bold 15px/1 Arial;
+      color: #555;
+      transition: all .5s;
+    }
+
+    /*hover*/
+    header .inner #gnb a:hover {
+      background-color: #555;
+      color: #fff;
+    }
+
+    /*main*/
+
+    .calendar-container {
+      width: 1000px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    #calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 100px);
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    #monthYear {
+      font-size: 36px;
+      font-weight: bold;
+      color: #333;
+      margin: 0 20px;
+    }
+
+    #calendar div {
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #calendar div:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    #calendar .has-schedule {
+      position: relative;
+    }
+
+    #calendar .has-schedule::after {
+      content: url('images/lip.png');
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      display: block;
+    }
+
+    .controls {
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-top: 20px;
+    }
+
+    .controls button {
+      height: 50px;
+      padding: 10px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 50px;
+    }
+
+    .controls button:hover {
+      background-color: #2980b9;
+    }
+
+    #schedule-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #schedule-modal input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #schedule-modal button {
+      padding: 10px 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #schedule-modal button:hover {
+      background-color: #2980b9;
+    }
+
+    #schedule-list {
+      position: relative;
+      width: 960px;
+      height: 300px;
+      margin: auto;
+      margin-top: 100px;
+      padding: 20px;
+      background-color: white;
+    }
+
+    #schedule-list h2 {
+      margin-top: 0;
+    }
+
+    #days-of-week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      font-weight: bold;
+      margin-bottom: 10px;
+      background-color: #fff;
+      padding: 10px;
+      border-bottom: 1px solid #3498db;
+    }
+
+    #days-of-week div {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      height: 40px;
+    }
+
+    .schedule-item {
+      margin-bottom: 10px;
+    }
+
+
+    /*footer*/
+
+    footer {
+      border-top: 1px #ddd;
+      min-width: 1200px;
+      height: 280px;
+      background-color: #141414;
+    }
+
+    footer .wrap {
+      margin: auto;
+      width: 1180px;
+      padding: 80px 60px;
+      line-height: 25px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      color: #bcbcbc;
+    }
+
+    footer .author li:first-child {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    footer .links {
+      display: flex;
+      gap: 70px;
+    }
+
+    footer .links a {
+      color: #bcbcbc;
+    }
+
+    footer .links i {
+      padding-right: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <header>
+    <div class="inner">
+      <div class="logo">
+        <a href="index.html"><img src="images/로고.png" width="50px" height="50px"></a>
+      </div>
+      <ul id="gnb">
+        <li><a href="notice.html">NOTICE</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="picture.html">PICTURE</a></li>
+        <li><a href="video.html">VIDEO</a></li>
+        <li><a href="pick.html">DKS PICK</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="calendar-container">
+      <div class="controls">
+        <button id="prevMonthBtn">이전 달</button>
+        <span id="monthYear"></span>
+        <button id="nextMonthBtn">다음 달</button>
+      </div>
+
+      <div id="days-of-week">
+        <div>일</div>
+        <div>월</div>
+        <div>화</div>
+        <div>수</div>
+        <div>목</div>
+        <div>금</div>
+        <div>토</div>
+      </div>
+
+      <div id="calendar"></div>
+    </div>
+
+    <!-- 일정 추가 모달 -->
+    <div id="schedule-modal">
+      <h2>일정 추가</h2>
+      <input type="text" id="schedule-input" placeholder="일정을 입력하세요" />
+      <button onclick="addSchedule()">추가</button>
+      <button onclick="closeModal()">닫기</button>
+    </div>
+
+    <!-- 일정 리스트 -->
+    <div id="schedule-list">
+      <h2>일정 목록</h2>
+      <div id="schedule-items"></div>
+    </div>
+
+    <script>
+      let currentDate = new Date();
+      let selectedDay = null;
+      let schedules = {}; // 각 날짜에 대한 일정 저장
+
+      function generateCalendar() {
+        const calendar = document.getElementById("calendar");
+        const monthYear = document.getElementById("monthYear");
+        const currentMonth = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const lastDateOfMonth = new Date(currentYear, currentMonth + 1, 0);
+        const firstDayOfWeek = firstDayOfMonth.getDay();
+        const totalDaysInMonth = lastDateOfMonth.getDate();
+
+        monthYear.textContent = `${currentYear}년 ${currentMonth + 1}월`;
+
+        calendar.innerHTML = ""; // 달력 초기화
+
+        // 첫날 전까지 빈 칸 추가
+        for (let i = 0; i < firstDayOfWeek; i++) {
+          const emptyCell = document.createElement("div");
+          calendar.appendChild(emptyCell);
+        }
+
+        // 날짜 추가
+        for (let day = 1; day <= totalDaysInMonth; day++) {
+          const dayCell = document.createElement("div");
+          dayCell.textContent = day;
+
+          // 일정이 있는 날짜에 작은 이미지 표시
+          if (schedules[`${currentYear}-${currentMonth + 1}-${day}`]) {
+            dayCell.classList.add("has-schedule");
+          }
+
+          // 날짜 클릭 시 모달 열기
+          dayCell.onclick = function () {
+            openModal(day);
+          };
+
+          calendar.appendChild(dayCell);
+        }
+      }
+
+      function openModal(day) {
+        selectedDay = day;
+        document.getElementById("schedule-modal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("schedule-modal").style.display = "none";
+      }
+
+      function addSchedule() {
+        const scheduleInput = document.getElementById("schedule-input").value;
+        if (scheduleInput) {
+          const key = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${selectedDay}`;
+          schedules[key] = scheduleInput; // 일정 저장
+          generateCalendar(); // 달력 새로 고침
+          updateScheduleList(); // 일정 목록 업데이트
+        }
+        closeModal();
+      }
+
+      function updateScheduleList() {
+        const scheduleItemsContainer = document.getElementById("schedule-items");
+        scheduleItemsContainer.innerHTML = ""; // 기존 리스트 초기화
+
+        // 모든 일정 표시
+        for (let date in schedules) {
+          const scheduleItem = document.createElement("div");
+          scheduleItem.classList.add("schedule-item");
+          scheduleItem.textContent = `${date}: ${schedules[date]}`;
+          scheduleItemsContainer.appendChild(scheduleItem);
+        }
+      }
+
+      // 이전 달로 이동
+      document.getElementById("prevMonthBtn").addEventListener("click", function () {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        generateCalendar();
+      });
+
+      // 다음 달로 이동
+      document.getElementById("nextMonthBtn").addEventListener("click", function () {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        generateCalendar();
+      });
+
+      // 페이지 로드 시 달력 생성
+      window.onload = function () {
+        generateCalendar();
+        updateScheduleList(); // 초기 일정 목록 표시
+      };
+    </script>
+
+  </main>
+
+
+  <footer>
+    <div class="wrap">
+      <ul class="author">
+        <li>Doh Kyung Soo Fan Maro</li>
+        <li>&copy; 2025 All rights reserved.<br>
+          Design by Maro</li>
+      </ul>
+      <ul class="address">
+        <li>pugoni@hanmail.net</li>
+        <li>+82 010 5252 0742</li>
+      </ul>
+      <div class="links">
+        <ul>
+          <li><a href="https://x.com/kssooni"><i class="fab fa-twitter-square"></i>X</a></li>
+          <li><a href="https://www.instagram.com/ksoosuni/"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+          <li><a href="https://www.youtube.com/@kssooni"><i class="fa-brands fa-youtube"></i>Youtube</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

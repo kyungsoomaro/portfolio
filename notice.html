@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notice</title>
+
+
+  <script src="https://kit.fontawesome.com/e7294f412a.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /*header*/
+    header {
+      min-width: 1200px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header .inner {
+      width: 1180px;
+      height: 80px;
+      margin: auto;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    /*로고*/
+    header .inner img {
+      position: absolute;
+      left: 0;
+      bottom: 15px;
+    }
+
+    header .inner h1 a {
+      font: bold 24px/1 Arial;
+      color: #444;
+    }
+
+    /*gnb*/
+    header .inner #gnb {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+    }
+
+    header .inner #gnb a {
+      display: block;
+      padding: 20px 30px;
+      font: bold 15px/1 Arial;
+      color: #555;
+      transition: all .5s;
+    }
+
+    /*hover*/
+    header .inner #gnb a:hover {
+      background-color: #555;
+      color: #fff;
+    }
+
+    /*main*/
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 1180px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .container h1 {
+      margin: 0;
+    }
+
+    .container a {
+      margin: 0;
+
+    }
+
+    .board {
+      width: 1180px;
+      margin: auto;
+      display: flex;
+      /* flexbox 사용 */
+      justify-content: left;
+      /* 수평 중앙 정렬 */
+      align-items: center;
+      /* 수직 중앙 정렬 */
+      padding: 20px;
+      /* 내부 여백을 추가 */
+    }
+
+    .board-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .board-list li {
+      background-color: white;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .board-list li h2 {
+      margin: 0;
+    }
+
+    .board-list li p {
+      color: #777;
+    }
+
+    .write-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .write-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .board-list li button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .board-list li button:hover {
+      background-color: #2980b9;
+    }
+
+    /*footer*/
+
+    footer {
+      border-top: 1px #ddd;
+      min-width: 1200px;
+      height: 280px;
+      background-color: #141414;
+    }
+
+    footer .wrap {
+      margin: auto;
+      width: 1180px;
+      padding: 80px 60px;
+      line-height: 25px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      color: #bcbcbc;
+    }
+
+    footer .author li:first-child {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    footer .links {
+      display: flex;
+      gap: 70px;
+    }
+
+    footer .links a {
+      color: #bcbcbc;
+    }
+
+    footer .links i {
+      padding-right: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="inner">
+      <div class="logo">
+        <a href="index.html"><img src="images/로고.png" width="50px" height="50px"></a>
+      </div>
+      <ul id="gnb">
+        <li><a href="notice.html">NOTICE</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="picture.html">PICTURE</a></li>
+        <li><a href="video.html">VIDEO</a></li>
+        <li><a href="pick.html">DKS PICK</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+
+
+
+    <div class="container">
+
+      <h1>게시판</h1>
+
+      <a href="write.html" class="write-btn">글 작성</a>
+
+
+    </div>
+
+    <div class="board">
+      <ul class="board-list" id="boardList">
+      </ul>
+    </div>
+
+
+  </main>
+
+
+  <footer>
+    <div class="wrap">
+      <ul class="author">
+        <li>Doh Kyung Soo Fan Maro</li>
+        <li>&copy; 2025 All rights reserved.<br>
+          Design by Maro</li>
+      </ul>
+      <ul class="address">
+        <li>pugoni@hanmail.net</li>
+        <li>+82 010 5252 0742</li>
+      </ul>
+      <div class="links">
+        <ul>
+          <li><a href="https://x.com/kssooni"><i class="fab fa-twitter-square"></i>X</a></li>
+          <li><a href="https://www.instagram.com/ksoosuni/"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+          <li><a href="https://www.youtube.com/@kssooni"><i class="fa-brands fa-youtube"></i>Youtube</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 임시 게시글 목록
+    const posts = [
+      { id: 1, title: "[안내]", content: "도경수 공식 팬클럽 2기 오픈 안내", date: "2025-03-07" },
+      { id: 2, title: "[안내]", content: "도경수 공식 응원봉 모바일 앱 출신 안내", date: "2025-02-28" },
+      { id: 3, title: "[공지]", content: "악성 게시글 관련 공지사항", date: "2025-02-25" },
+      { id: 4, title: "[안내]", content: "ZZirang-e & Charles POP-UP STORE Official MD ONLINE 판매안내", date: "2025-01-24" },
+      { id: 5, title: "[안내]", content: "도경수 디지털 싱글 '밤에 내린 눈(Snowfall at Night'발매 안내)", date: "2025-01-17" },
+    ];
+
+    // 게시글 목록을 HTML에 동적으로 표시하는 함수
+    function loadPosts() {
+      const boardList = document.getElementById("boardList");
+      boardList.innerHTML = ''; // 기존 내용 삭제
+
+      posts.forEach(post => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+                <h2>${post.title}</h2>
+                <p>${post.content}</p>
+                <p>작성일: ${post.date}</p>
+                <button onclick="deletePost(${post.id})">삭제</button>
+            `;
+        boardList.appendChild(li);
+      });
+    }
+
+    // 게시글 삭제 함수 (임시로 배열에서 삭제)
+    function deletePost(postId) {
+      const postIndex = posts.findIndex(post => post.id === postId);
+      if (postIndex > -1) {
+        posts.splice(postIndex, 1);
+        loadPosts(); // 삭제 후 게시글 목록 다시 로드
+      }
+    }
+
+    // 페이지 로딩 시 게시글 목록 표시
+    loadPosts();
+  </script>
+
+
+</body>
+
+</html>
