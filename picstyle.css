@@ -154,6 +154,18 @@ header .inner #gnb a:hover {
   color: #bbb;
 }
 
+/*스크롤탑 버튼*/
+.top {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+  position: fixed;
+  bottom: 20px; right: 50px;
+  z-index: 999;
+  display: none;
+  cursor: pointer;
+}
+
 
 footer {
   border-top: 1px #ddd;

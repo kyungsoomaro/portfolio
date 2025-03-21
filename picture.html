@@ -15,6 +15,12 @@
 </head>
 
 <body>
+
+   <!--스크롤 탑버튼-->
+  <div class="top">
+    <img src="images/1742537007878.png" width="100px" height="100px">
+  </div>
+   
   <header>
     <div class="inner">
       <div class="logo">
@@ -50,6 +56,34 @@
         <img src="images/der2.jpg" alt="">
         <img src="images/birthday.jpg" alt="">
         <img src="images/birthday.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
+        <img src="images/face.jpg" alt="">
       </div>
 
       <div class="modal">
@@ -86,6 +120,30 @@
         modal.style.display = "none";
       }
     })
+
+    const topBtn = document.querySelector(".top");
+
+//브라우저 내에서 스크롤 이벤트 발생시
+window.addEventListener("scroll", () => {
+  let scroll = window.scrollY; //scroll변수에 스크롤 이동값을 할당
+  //console.log(scroll)
+  //scroll이동값이 100보다 크면 스크롤탑버튼을 표시
+  if(scroll >= 100){
+    topBtn.style.display = "block";
+  } else { //scroll이동값이 100보다 작으면 스크롤탑버튼을 제거
+    topBtn.style.display = "none";
+  }
+})
+//탑버튼을 클릭했을때
+topBtn.addEventListener("click", () => {
+  //scrollTo({top,left,behavior}) = 스크롤 위치를 특정위치로 이동시킴
+  window.scrollTo({
+    top:0,
+    left:0,
+    behavior:"smooth" //부드러운 스크롤 이동
+  })
+})
+
   </script>
 
 
