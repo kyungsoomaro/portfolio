@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*노말라이즈*/
+*{margin: 0; padding: 0;} 
+ul, li {list-style: none;} 
+a {text-decoration: none;}
+
+
+/*풀 스크린 레이아웃*/
+.swiper {
+  position: relative;
+  width: 100%; 
+  height: 1200px;
+  overflow: hidden;
+  box-sizing: border-box;
+ }
+
+/*제목*/
+#main {
+  min-width: 1200px;
+  height: 250px;
+  background-color: #f6f6f6;
+  padding-top: 80px;
+  box-sizing: border-box;
+  color: #191919;
+  text-align: center;
+}
+
+#main h1 {
+  font-size: 36px;
+  line-height: 80px;
+  color: #accad0;
+}
+
+/*자동 재생버튼*/
+.swiper .auto {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  z-index: 20;
+  display: flex;
+  gap: 20px;
+}
+
+.swiper .auto li {
+  cursor: pointer;
+  color: #191919;
+  font-size: 20px;
+  opacity: 0.9;
+  transition: all 0.5s;
+}
+.swiper .auto li:hover {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+
+/*슬라이드 프레임*/
+.swiper .swiper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.swiper .swiper-wrapper .swiper-slide {
+  width: 500px;
+  height: 600px;
+  position: relative;
+}
+.swiper .swiper-wrapper .swiper-slide .inner {
+  width: 100%; height: 100%;
+  background: #fff;
+  padding: 0 30px;
+  box-sizing: border-box; 
+  opacity: 0.4;
+  transition: 1s;
+}
+/*활성화 되는 slide에 swiper-slide-active라는 클래스가 적용되기 때문에 원하는 스타일을 아래와 같이 적용하면 됩니다*/
+.swiper .swiper-wrapper .swiper-slide-active .inner {
+  opacity: 1;
+  box-shadow: 0 0 50px rgba(255,255,255,0.8);
+}
+
+.swiper .swiper-wrapper .swiper-slide .inner::before, 
+.swiper .swiper-wrapper .swiper-slide .inner::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0; top: 0;
+  background: #fff;
+  opacity: 0;
+}
+
+.swiper .swiper-wrapper .swiper-slide-prev .inner,
+.swiper .swiper-wrapper .swiper-slide-next .inner {
+  opacity: 0.7;
+}
+@keyframes ani {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  1% {opacity: 0.5;}
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+.swiper .swiper-wrapper .swiper-slide .inner::before {
+  animation: ani 1s ease 1;
+}
+
+.swiper .swiper-wrapper .swiper-slide .inner::after {
+  animation: ani 1s ease 0.3 1;
+}
+.swiper .swiper-wrapper .swiper-slide .inner .content {
+  position: relative;
+  z-index: 10;
+}
+
+.swiper .swiper-wrapper .swiper-slide .inner .content video {
+  width: 100%; 
+}
+
+.swiper .swiper-wrapper .swiper-slide .inner .content h2 {
+  font-weight: normal;
+  font-size: 40px;
+  font-family: "Roboto"; 
+  color: #111;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.swiper .swiper-wrapper .swiper-slide .inner .content h2::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 1px;
+  background-color: #888;
+  margin-top: 15px;
+  transition: 1s 0.5s;
+}
+/*slide가 활성화 되면 수평선의 길이를 늘려줍니다*/
+.swiper .swiper-wrapper .swiper-slide-active .inner .content h2::after {
+  width: 100%;
+}
+.swiper .swiper-wrapper .swiper-slide .inner .content p {
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.3;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+/*좌우 버튼*/
+.swiper .swiper-button-prev {
+  color: #111;
+  left: auto;/*left, top 속성 초기화*/
+  top: auto;
+  left: 60px;
+  bottom: 400px;
+  transform: scale(0.5);
+}
+.swiper .swiper-button-next {
+  color: #111;
+  left: auto;/*left, top 속성 초기화*/
+  top: auto;
+  right: 60px;
+  bottom: 400px;
+  transform: scale(0.5);
+}
+
+/*페이지네이션*/
+.swiper-pagination-fraction {
+  bottom : auto;
+  top : 250px;
+  left: auto;
+  right: 50px;
+  width: auto;
+  font-size: 16px;
+  font-family: "Orbitron";
+  color: #111;
+  letter-spacing: 1px;
+} 
+
+.swiper-pagination-fraction span:nth-of-type(1) {
+  font-size: 30px;
+  color: #111;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding-top: 100px;
+  z-index:9999;
+  display: none;
+}
+.modal.on{
+  display:block;
+}
+
+.modal-content {
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  margin: auto;
+  animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.close {
+  /*닫기 버튼은 오른쪽 상단에 배치*/
+  position: fixed;
+  top: 30px;
+  right: 60px;
+  color: #f1f1f1;
+  font-weight: bold;
+  font-size: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  color: #bbb;
+}

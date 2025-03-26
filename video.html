@@ -5,7 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video</title>
   
+  
+  <!--폰트어썸 CDN-->
   <script src="https://kit.fontawesome.com/e7294f412a.js" crossorigin="anonymous"></script>
+
+  <!--swiper CDN-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+ 
+
+  <!--css 외부정의-->
+  <link href="css/video.css" rel="stylesheet">
+
+  
+
 
   <style>
   * {margin: 0; padding: 0;}
@@ -57,46 +70,6 @@
     color:#fff;
   }
   
-  /*main*/
-  #main {
-    min-width: 1200px;
-    height: 250px;
-    background-color: #f6f6f6;
-    padding-top: 80px;
-    box-sizing: border-box;
-    color: #191919;
-    text-align: center;
-  }
-  #main h1 {
-    font-size: 36px; 
-    line-height: 80px;
-    color: #accad0;
-  }
-    .container{
-      min-width: 1200px;
-      width: 1180px;
-      margin: auto;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 350px;
-      grid-template-areas: 
-        'a a c'
-        'b d c'
-        'b f g'
-        'e f g';
-    }
-    .container img {
-      width: 100%;
-      height: 100%;
-    }
-
-    .image1{grid-area:a;}
-    .image2{grid-area:b;}
-    .image3{grid-area:c;}
-    .image4{grid-area:e;}
-    .image5{grid-area:f;}
-    .image6{grid-area:g;}
-  
    
   footer {
     border-top: 1px #ddd;
@@ -138,7 +111,11 @@
 
 </head>
 <body>
-  
+  <div class="modal">
+    <span class="close">&times;</span>
+    <video class="modal-content"></video>
+  </div>
+
   <header>
     <div class="inner">
       <div class="logo">
@@ -155,22 +132,85 @@
   </header>
 
   <main>
-    <section id="main">
-      <div class="wrap">
-        <h1>2024-25년 직캠영상</h1>
+    <div class="swiper">
+      <section id="main">
+        <div class="mainwrap">
+          <h1>도경수영상</h1>
+        </div>
+      </section>
+      <!--오토플레이 버튼-->
+      <ul class="auto">
+        <li class="btnStart"><i class="fas fa-play"></i></li>
+        <li class="btnStop"><i class="fas fa-pause"></i></li>
+      </ul>
+  
+      <!--스와이프 갤러리-->
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="content">
+              <video src="images/fanmeeting.mp4" loop muted></video>
+              <h2>Subscript</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="content">
+              <video src="images/staroff.mp4" loop muted></video>
+              <h2>Subscript</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </p>
+            </div>
+          </div>
+        </div><!--swiper-slide END-->
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="content">
+              <video src="images/movie.mp4" loop muted></video>
+              <h2>Subscript</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </p>
+            </div>
+          </div>
+        </div><!--swiper-slide END-->
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="content">
+              <video src="images/pmsradio.mp4" loop muted></video>
+              <h2>Subscript</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </p>
+            </div>
+          </div>
+  
+        </div><!--swiper-slide END-->
+        <div class="swiper-slide">
+          <div class="inner">
+            <div class="content">
+              <video src="images/screethi.mp4" loop muted></video>
+              <h2>Subscript</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </p>
+            </div>
+          </div>
+  
+        </div><!--swiper-slide END-->
       </div>
-    </section>
-
-    <section class="container">
-      <img src= "images/der1.jpg" alt="img" class="image image1">
-      <img src= "images/der2.jpg" alt ="img" class="image image2">
-      <img src= "images/cong.jpg" alt="img" class="image image3">
-      <img src= "images/face.jpg" alt="img" class="image image4">
-      <img src= "images/tory.jpg" alt="img" class="image image5">
-      <img src= "images/dks.jpg" alt="img" class="image image6">
-      <img src= "images/full.jpg" alt="img" class="image image7">
-    </section>  
-    
+      <!--좌우 버튼-->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!--페이징 버튼-->
+      <div class="swiper-pagination"></div>
+    </div>
   </main>
 
   <footer>
@@ -194,6 +234,8 @@
       </div>
     </div>
   </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!--js 외부정의-->
+  <script src="js/video.js"></script>
 </body>
 </html>
