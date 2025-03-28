@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  cursor: url(../images/cursor1.png), auto;
 }
 
 ol,
@@ -104,7 +105,7 @@ header .inner #gnb a:hover {
   /* transform:translateX(0) */
   opacity: 0.7;
   transition: all 0.5s;
-  cursor: pointer;
+  cursor: url(../images/cursor1.png), auto;
 }
 
 

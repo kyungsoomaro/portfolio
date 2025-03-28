@@ -6,9 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DKS Pick</title>
 
+   <!--구글지도 API-->
+   <script defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1-FHzGJ9PhE3XHaD4Bh2UpXxHRYA8iqY&callback=initMap"></script>
+
   <script src="https://kit.fontawesome.com/e7294f412a.js" crossorigin="anonymous"></script>
 
   <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
     * {
       margin: 0;
       padding: 0;
@@ -73,98 +79,83 @@
     }
 
     /*main*/
-    .slideContaniner {
-      width: 1200px;
-      height: 1000px;
-      margin: 0px auto;
+    main {
+      font: 17px/1.4 "Orbitron";
+      width: 1180px;
+      height: 800px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: auto;
+    }
+    #map {
+      width: 650px;
+      margin: auto;
       overflow: hidden;
-      position: relative;
     }
-
-    .slides {
-      position: relative;
-      animation: 1.5s;
-      text-align: center;
+    .food {
+      width: 500px;
+      text-align: left;
     }
+    /*.detail {
+      width: 400px;
+      margin: auto;
+    }*/
 
-    .numberText {
-      display: inline-block;
-      color: #666;
-      font-size: 15px;
-      padding: 8px 12px;
-      position: absolute;
-      top: 0;
-      left: 100px;
-    }
-
-    .slides img {
-      width: 1000px;
-      height: 1000px;
-    }
-
-    .text {
-      color: #666;
-      font-size: 16px;
-      padding: 8px 12px;
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .prev,
-    .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #3498db;
-    }
-
-    .prev {
-      left: 0;
-    }
-
-    .next {
-      right: 0;
-    }
-
-    .prev:hover,
-    .next:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    .dotContainer {
-      text-align: center;
-      margin-top: 20px;
+    .food h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin: 40px;
       margin-bottom: 50px;
     }
 
-    .dot {
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      margin: 0 5px;
-      background-color: #bbb;
+    .food li {
+      margin: 40px;
+      font-size: 32px;
+      color: #999;
       cursor: pointer;
-      transition: 0.6s;
     }
 
-    .dot:hover,
-    .active {
-      background-color: #777;
+    .food li:hover {
+      color: #141414;
     }
 
-    @keyframes fade {
-      from {
-        opacity: 0.4;
-      }
-
-      to {
-        opacity: 1;
-      }
+    .popup {
+      display: none;
+      position: fixed;
+      left:0; top:0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
     }
 
+    .popup-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      position: relative;
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: 500px;
+      object-fit: contain;
+      margin-top: 20px;
+    }
+
+    .close-btn {
+      color: #141414;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
 
     /*footer*/
     footer {
@@ -206,8 +197,7 @@
     }
   </style>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+  
 </head>
 
 <body>
@@ -228,45 +218,135 @@
   </header>
 
   <main>
-    <div class="slideContaniner">
-      <div class="slides" style="display: block;">
-        <div class="numberText">1 / 4</div>
-        <img src="images/zzi1.jpg" alt="이미지1">
-        <div class="text">새해 복 많이 받으세요</div>
-      </div>
+     <!--문서상에서 지도를 보여줄 요소에 id속성을 map으로 설정합니다-->
+  <div id="map" style="height: 800px;"></div>
+  <div class="food">
+    <h1>도경수 맛집 LIST</h1>
+    <ul>
+        <li onclick="showPopup('향동가<br>학동역 8번 출구<br>0507-1420-7894','../images/hyangdong.jpg')">A. 향동가</li>
+        <li onclick="showPopup('용산삼계탕<br>삼각지역 3번 출구<br>0507-1404-3053','../images/yongsan.jpg')">B. 용산삼계탕</li>
+        <li onclick="showPopup('코마츠<br>학동역 10번 출구<br>0507-1326-0626','../images/coma.png')">C. 코마츠</li>
+        <li onclick="showPopup('진주<br>압구정로데오역 6번 출구<br>070-4120-8788','../images/jinju.jpg')">D. 진주</li>
+        <li onclick="showPopup('조개포차<br>경기 시흥시 오이도<br>0507-1406-7338','../images/joge.jpg')">E. 조개포차</li>
+        <li onclick="showPopup('고다이<br>한남역 1번 출구<br>02-749-9299','../images/kodai.jpg')">F. 고다이</li>
+        <li onclick="showPopup('하이디라오 건대지점<br>건대입구역 3번 출구<br>0507-1359-5683','../images/hidrao.jpg')">G. 하이디라오 건대지점</li>
+    </ul>
+  </div>
+</main>
+<div id="popup" class="popup">
+  <div class = "popup-content">
+    <span id="closeBtn" class="close-btn">&times;</span>
+    <p id="popupText"></p>
+  </div>
+</div>
+  <script>
+    //initMap을 함수명으로 사용했기때문에, window객체의 iniMap속성에 콜백함수를 할당합니다
+    window.initMap = function () {
+      //#map요소를 google.maps.Map() 생성자의 인자로 넘겨서 호출하면 구글 지도 객체를 얻을 수 있습니다
+      const map = new google.maps.Map(document.getElementById("map"), {
+        //두번째 인자로 구글 지도를 어떻게 보여줄건지 옵션을 넘길 수 있다
+        //center옵션에 지도의 중앙 위치의 위도와 경도를 설정해주고, zoom옵션에 지도를 얼마나 가깝게 볼건지를 설정해 줄 수 있습니다
+        center: { lat: 37.5400456, lng: 126.9921017 },
+        zoom: 10,
 
-      <div class="slides">
-        <div class="numberText">2 / 4</div>
-        <img src="images/zzi2.jpg" alt="이미지2">
-        <div class="text">정월대보름</div>
-      </div>
+      })
+      //마커로 위치 표시하기
+      //google.maps.Marker()생성자 함수에 마커를 놓고 싶은 위치의 위,경도와 라벨(label) 그리고 위에서 생성한 지도 객체를 넘기면 됩니다
 
-      <div class="slides">
-        <div class="numberText">3 / 4</div>
-        <img src="images/zzi3.jpg" alt="이미지3">
-        <div class="text">발렌타인데이</div>
-      </div>
+      const malls = [
+        { label: "A", name: "향동가", lat: 37.51878, lng: 127.0312},
+        { label: "B", name: "용산삼계탕", lat: 37.53203, lng: 126.9716},
+        { label: "C", name: "코마츠", lat: 37.51601, lng: 127.0316 },
+        { label: "D", name: "진주", lat: 37.52868, lng: 127.0376},
+        { label: "E", name: "조개포차", lat: 37.34203, lng: 126.6865 },
+        { label: "F", name: "고다이", lat: 37.53545, lng: 127.0087 },
+        { label: "G", name: "하이디라오<br>건대지점", lat: 37.54654, lng: 127.0724 },
+      ];
 
-      <div class="slides">
-        <div class="numberText">4 / 4</div>
-        <img src="images/zzi4.jpg" alt="이미지4">
-        <div class="text">말할 수 없는 비밀 개봉</div>
-      </div>
+      //여러 위치(위도 경도)를 포함할 수 있는 경계 상자를 정의하는데 사용됩니다
+      //나중에 이 경계를 사용하여 지도에서 모든 마커가 보이도록 자동으로 조정할 수 있습니다
+      const bounds = new google.maps.LatLngBounds();
 
-      <!-- 이전 과 다음 버튼-->
-      <a class="prev"><i class="fa-solid fa-backward-fast fa-3x"></i></a>
-      <a class="next"><i class="fa-solid fa-forward-fast fa-3x"></i></a>
+      //InfoWindow클래스는 지도위에 팝압 창(인포윈도우)을 생성하는데 사용됩니다
+      const infoWindow = new google.maps.InfoWindow();
 
-    </div>
+      //객체에서 label, name, lat, lng값을 구조 분해 할당을 통해 추출합니다. 이로써 각 쇼핑몰의 정보를 쉽게 사용할 수 있습니다.
 
-    <div class="dotContainer">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+      //구조분해 할당 = 객체를 분해해서 각각 변수에 할당하는 문법
+      const object = {
+        label: "T",
+        name: "타임스퀘어",
+        lat: 37.5173108,
+        lng: 126.9033793
+      }
+      const { label, name, lat, lng } = object;
 
-  </main>
+      // console.log(label, name, lat, lng)
+      //*====================================================*/
+
+      // const foodList = document.querySelectorAll(".food li");
+      // const detail = document.querySelector(".detail");
+
+      //객체에서 label, name, lat, lng값을 구조 분해 할당을 통해 추출합니다. 이로써 각 쇼핑몰의 정보를 쉽게 사용할 수 있습니다.
+      malls.forEach(({ label, name, lat, lng }) => {
+        //지도에 특정 위치를 표시하기 위한 마커를 나타냅니다
+        const marker = new google.maps.Marker({
+          position: { lat, lng }, //각 쇼핑몰의 위도와 경도를 position속성값으로 전달
+          label, //마커에 표시할 레이블을 설정
+          map, //마커를 추가할 지도를 지정
+        })
+        //extend()메서드를 호출하여 각 마커의 위치 정보를 넘겨줍니다
+        bounds.extend(marker.position) //모든 마카의 위치가 포함된 경계 상자가 업데이트 됩니다
+
+        //마커에 클릭이벤트 생성
+
+        // foodList[idx].addEventListener("click", () => {
+        //   detail.innerHTML = text;
+
+        marker.addListener("click", () => {
+        //사용자가 클릭한 마커의 위치로 지도를 부드럽게 이동시킨다
+        map.panTo(marker.position);
+
+        //infoWindow객체의 내용을 설정합니다, 여기서 name은 클릭한 마커에 해당하는 쇼핑몰 이름
+        infoWindow.setContent(name);
+        //infoWindow를 띄워줍니다.
+        infoWindow.open({
+          anchor: marker, //인포윈도우의 앵커로 사용될 마커를 지정
+          map, //인포윈도우가 열릴 지도 객체를 지정
+        })
+      })
+
+      })
+      //fitBounds()메서드에 지도 경계 객체를 넘겨줍니다
+      map.fitBounds(bounds) //모든 마커가 지도 안에 잘 보이도록 줌 레벨과 중심을 설정합니다
+
+     
+
+    }
+
+    function showPopup(description, imageUrl) {
+      const popupText = document.getElementById('popupText');
+
+      popupText.innerHTML = `
+        <p style="font-size: 16px; line-height: 1.5;">${description}</p>
+        <img src="${imageUrl}" alt="Image" />
+    `;
+
+      document.getElementById('popup').style.display = 'flex';
+    }
+
+    document.getElementById('closeBtn').onclick = function() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('popup')) {
+        document.getElementById('popup').style.display = 'none';
+      }
+    }
+  </script>
+
+
 
 
   <footer>
@@ -292,54 +372,7 @@
   </footer>
 
 
-  <script>
-    $(document).ready(function () {
-      let slideIndex = 0;
-
-      $(".dot").click(function () {
-        slideIndex = $(this).index();
-        showSlide();
-      });
-
-      $(".next").click(function () {
-        slideIndex++;
-        setSlideIndex();
-      });
-
-      $(".prev").click(function () {
-        slideIndex--;
-        setSlideIndex();
-
-      });
-
-      function setSlideIndex() {
-        let maxIndex = $(".slides").length - 1;
-
-        if (slideIndex < 0) slideIndex = maxIndex;
-        if (slideIndex > maxIndex) slideIndex = 0;
-
-        showSlide();
-      }
-
-      function showSlide() {
-
-
-        $(".slides").hide();
-        $(".dot").removeClass("active");
-
-        $(".slides").eq(slideIndex).show();
-        $(".dot").eq(slideIndex).addClass("active");
-
-
-      }
-
-      setInterval(function () {
-        slideIndex++;
-        setSlideIndex()
-      }, 5000);
-    });
-  </script>
-
+  
 </body>
 
 </html>
